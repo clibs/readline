@@ -46,5 +46,6 @@ char * readline_next(readline_t * rl) {
 void readline_free(readline_t * rl) {
   rl->cursor = 0;
   rl->line = 0;
+  free(rl->buffer);
   free(rl);
 }
