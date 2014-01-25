@@ -28,6 +28,9 @@ do {
   // get line.
 
 } while (line != NULL);
+
+// free memory
+readline_free(rl);
 ```
 
 License
