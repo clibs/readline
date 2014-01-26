@@ -23,19 +23,23 @@ readline_t * readline_new(char * buffer) {
 }
 
 char * readline_next(readline_t * rl) {
+  char * ret = NULL;
   size_t cur = rl->cursor;
   size_t len;
-  char * ret = NULL;
+  size_t buffer_len = strlen(rl->buffer);
 
-  while (rl->buffer[cur++] != '\n' && cur < strlen(rl->buffer));
+  while (
+    rl->buffer[cur++] != '\n' && 
+    cur <= buffer_len);
+
   len = cur - rl->cursor - 1;
   ret = (char*) malloc(len);
 
-  if (ret == NULL || len == 0) {
+  if (ret == NULL || (len == 0 && cur > buffer_len)) {
     free(ret);
     return NULL;
   }
-  
+
   memset(ret, 0, len);
   memcpy(ret, rl->buffer+rl->cursor, len);
   rl->cursor = cur;
