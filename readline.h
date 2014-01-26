@@ -22,28 +22,28 @@ typedef struct readline_s {
  * create a new readline struct
  */
 
-readline_t*
+readline_t *
 readline_new(char * buffer);
 
 /*
  * next cursor
  */
 
-char*
+char *
 readline_next(readline_t * rl);
 
 /*
  * get the last line directly
  */
 
-char*
+char *
 readline_last_from_rl(readline_t * rl);
 
 /*
  * get the last line from buffer
  */
 
-inline char*
+inline char *
 readline_last(char * buffer);
 
 /*

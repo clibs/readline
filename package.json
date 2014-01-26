@@ -1,6 +1,6 @@
 {
   "name": "readline",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repo": "clibs/readline",
   "description": "Tiny C readline library",
   "keywords": ["readline", "tiny"],
