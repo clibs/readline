@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include "readline.h"
 
-readline_t*
+readline_t *
 readline_new(char * buffer) {
   readline_t * rl = (readline_t*) malloc(sizeof(readline_t));
   size_t len = strlen(buffer);
@@ -23,7 +23,7 @@ readline_new(char * buffer) {
   return rl;
 }
 
-char*
+char *
 readline_next(readline_t * rl) {
   char * ret = NULL;
   size_t cur = rl->cursor;
@@ -49,7 +49,7 @@ readline_next(readline_t * rl) {
   return ret;
 }
 
-char*
+char *
 readline_last_from_rl(readline_t * rl) {
   char * ret = NULL;
   size_t cur = strlen(rl->buffer)-1; /* skip \0 of the last line */
@@ -76,7 +76,7 @@ readline_last_from_rl(readline_t * rl) {
   return ret;
 }
 
-char*
+char *
 readline_last(char * buffer) {
   readline_t * rl = readline_new(buffer);
   char * ret = readline_last_from_rl(rl);

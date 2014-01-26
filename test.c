@@ -9,7 +9,8 @@
   printf("\n================\n")  \
 
 
-void test_readline_simple() {
+void
+test_readline_simple() {
 
   test_start();
   char * buf = "" \
@@ -27,7 +28,8 @@ void test_readline_simple() {
   assert(count == 2);
 }
 
-void test_readline_empty_line() {
+void 
+test_readline_empty_line() {
   test_start();
   char * buf = "" \
     "c++\n"
@@ -44,7 +46,8 @@ void test_readline_empty_line() {
   }
 }
 
-void test_readline_last_line() {
+void
+test_readline_last_line() {
 
   test_start();
   char * buf = "" \
@@ -63,7 +66,8 @@ void test_readline_last_line() {
   assert(count == 3);
 }
 
-void test_readline_last_empty_line() {
+void
+test_readline_last_empty_line() {
 
   test_start();
   char * buf = "" \
@@ -82,7 +86,8 @@ void test_readline_last_empty_line() {
   assert(count == 2);
 }
 
-void test_readline_last() {
+void
+test_readline_last() {
 
   test_start();
   char * buf = "" \
@@ -95,7 +100,8 @@ void test_readline_last() {
   assert(strcmp("javascript", last) == 0);
 }
 
-void test_readline_last_without_10() {
+void
+test_readline_last_without_10() {
 
   test_start();
   char * buf = "" \
@@ -108,7 +114,8 @@ void test_readline_last_without_10() {
   assert(strcmp("javascript", last) == 0);
 }
 
-int main() {
+int 
+main() {
 
   /* next func */
   test_readline_simple();
