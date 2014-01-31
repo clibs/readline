@@ -1,4 +1,3 @@
-
 readline
 ================
 
@@ -8,10 +7,16 @@ Tiny C readline library, note: this is not used in CLI-readline's one.
 Installation
 ==================
 
-Install with git
+Install it with git
 
 ```bash
-git clone https://github.com/yorkie/readline.git master
+$ git clone https://github.com/yorkie/readline.git master
+```
+
+Install it with [clib](https://github.com/clibs/clib)
+
+```bash
+$ clib install clibs/readline
 ```
 
 Get Started
