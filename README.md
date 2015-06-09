@@ -46,24 +46,32 @@ API
 /*
  * Create a context of readline from a buffer
  */
-
 readline_t *
 readline_new(char * buffer);
 
 /*
  * Get the next line of the context
  */
-
 char *
 readline_next(readline_t * rl);
 
 /*
  * Get last line of a buffer, ignoring any context of readline
  */
+char *
+readline_last_from_rl(readline_t * rl);
 
+/*
+ * Get the last line directly buffer
+ */
 char *
 readline_last(char * buffer);
 
+/*
+ * free the object
+ */
+void
+readline_free(readline_t * rl);
 ```
 
 

@@ -31,13 +31,13 @@ char *
 readline_next(readline_t * rl);
 
 /*
- * get the last line directly
+ * Get last line of a buffer, ignoring any context of readline
  */
 char *
 readline_last_from_rl(readline_t * rl);
 
 /*
- * get the last line from buffer
+ * Get the last line directly buffer
  */
 char *
 readline_last(char * buffer);
