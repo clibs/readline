@@ -21,35 +21,30 @@ typedef struct readline_s {
 /*
  * create a new readline struct
  */
-
 readline_t *
 readline_new(char * buffer);
 
 /*
  * next cursor
  */
-
 char *
 readline_next(readline_t * rl);
 
 /*
  * get the last line directly
  */
-
 char *
 readline_last_from_rl(readline_t * rl);
 
 /*
  * get the last line from buffer
  */
-
-inline char *
+char *
 readline_last(char * buffer);
 
 /*
  * free the object
  */
-
 void
 readline_free(readline_t * rl);
 
