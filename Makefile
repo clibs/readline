@@ -1,6 +1,7 @@
+CFLAGS := -Wall -pedantic -std=c99
 
 test: readline.c test.c
-	@$(CC) $^ -std=c99 -o $@
+	@$(CC) $^ $(CFLAGS) -o $@
 	@./test
 
 .PHONY: test

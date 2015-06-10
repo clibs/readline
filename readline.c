@@ -5,6 +5,7 @@
 // Copyright (c) 2014 Yorkie Neil <yorkiefixer@gmail.com>
 //
 
+#include <assert.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -12,13 +13,18 @@
 
 readline_t *
 readline_new(char * buffer) {
-  readline_t * rl = (readline_t*) malloc(sizeof(readline_t));
+  readline_t * rl = (readline_t*) calloc(1, sizeof(readline_t));
+  if (NULL == rl) {
+    return rl;
+  }
   size_t len = strlen(buffer);
 
-  rl->cursor = 0;
-  rl->line = 0;
   rl->buffer = (char*) malloc(len);
-  memset(rl->buffer, 0, len);
+  if( NULL == rl->buffer ) {
+    free(rl);
+    return NULL;
+  }
+
   memcpy(rl->buffer, buffer, len);
   return rl;
 }
@@ -30,19 +36,22 @@ readline_next(readline_t * rl) {
   size_t len;
   size_t buffer_len = strlen(rl->buffer);
 
+  assert(rl->buffer != NULL);
+
   while (
-    rl->buffer[cur++] != '\n' && 
+    rl->buffer[cur++] != '\n' &&
     cur <= buffer_len);
 
   len = cur - rl->cursor - 1;
   ret = (char*) malloc(len);
 
-  if (ret == NULL || (len == 0 && cur > buffer_len)) {
+  if (ret == NULL) {
+    return NULL;
+  } else if (len == 0 && cur > buffer_len) {
     free(ret);
     return NULL;
   }
 
-  memset(ret, 0, len);
   memcpy(ret, rl->buffer+rl->cursor, len);
   rl->cursor = cur;
   rl->line += 1;
@@ -56,6 +65,8 @@ readline_last_from_rl(readline_t * rl) {
   size_t len;
   size_t buffer_len = cur;
 
+  assert(rl->buffer != NULL);
+
   while (cur--) {
     if (rl->buffer[cur] == '\n') {
       cur++;
@@ -67,11 +78,12 @@ readline_last_from_rl(readline_t * rl) {
   ret = (char*) malloc(len);
 
   if (ret == NULL) {
+    return NULL;
+  } else if (len == 0 && cur > buffer_len) {
     free(ret);
     return NULL;
   }
 
-  memset(ret, 0, len);
   memcpy(ret, rl->buffer+cur, len);
   return ret;
 }
@@ -79,6 +91,9 @@ readline_last_from_rl(readline_t * rl) {
 char *
 readline_last(char * buffer) {
   readline_t * rl = readline_new(buffer);
+  if (NULL == rl) {
+    return NULL;
+  }
   char * ret = readline_last_from_rl(rl);
   readline_free(rl);
   return ret;
@@ -86,8 +101,9 @@ readline_last(char * buffer) {
 
 void
 readline_free(readline_t * rl) {
-  rl->cursor = 0;
-  rl->line = 0;
+  assert(rl->buffer != NULL);
+  assert(rl != NULL);
+
   free(rl->buffer);
   free(rl);
 }

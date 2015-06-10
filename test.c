@@ -8,7 +8,9 @@
 #define test_start() \
   printf("\n================\n")  \
 
-
+/*
+ * Reads two lines
+ */
 void
 test_readline_simple() {
 
@@ -25,10 +27,15 @@ test_readline_simple() {
     count++;
     printf("line: %s\n", line);
   }
+
   assert(count == 2);
+  printf("\t OK\n");
 }
 
-void 
+/*
+ * Reads 3 lines, including an empty line
+ */
+void
 test_readline_empty_line() {
   test_start();
   char * buf = "" \
@@ -44,8 +51,14 @@ test_readline_empty_line() {
     count++;
     printf("line: %s\n", line);
   }
+
+  assert(count == 3);
+  printf("\t OK\n");
 }
 
+/*
+ * Reads the last line
+ */
 void
 test_readline_last_line() {
 
@@ -62,10 +75,16 @@ test_readline_last_line() {
   while ((line = (readline_next(rl))) != NULL) {
     count++;
     printf("line: %s\n", line);
+    assert(count <= 3);
   }
+
   assert(count == 3);
+  printf("\t OK\n");
 }
 
+/*
+ * Reads the last that isn't empty
+ */
 void
 test_readline_last_empty_line() {
 
@@ -83,9 +102,14 @@ test_readline_last_empty_line() {
     count++;
     printf("line: %s\n", line);
   }
+
   assert(count == 2);
+  printf("\t OK\n");
 }
 
+/*
+ * Reads the last line
+ */
 void
 test_readline_last() {
 
@@ -97,9 +121,14 @@ test_readline_last() {
 
   char * last = readline_last(buf);
   printf("last: %s\n", last);
+
   assert(strcmp("javascript", last) == 0);
+  printf("\t OK\n");
 }
 
+/*
+ * Reads the last line without \n
+ */
 void
 test_readline_last_without_10() {
 
@@ -111,10 +140,13 @@ test_readline_last_without_10() {
 
   char * last = readline_last(buf);
   printf("last: %s\n", last);
+
   assert(strcmp("javascript", last) == 0);
+  printf("\t OK\n");
 }
 
-int 
+
+int
 main() {
 
   /* next func */
